@@ -96,21 +96,21 @@
 				(cram-talker ?output)
 				)
 	    
-			 (when (eq *plan* :search) ;; TODO add *number* for multiple objects
+			 (when (eq *plan* :search)
 			 	(print "Performing searching ...") ;; search for object/person on furniture/in a room
 				(setf ?output (searching-object *objectname* *personname* *persontype* *personaction* *fur-location1* *room1*)) 
 				(print "searching Plan Done ...")
 				(cram-talker ?output)
 				)
 			 
-			 (when (eq *plan* :fetch) ;; TODO add *number* for multiple objects
+			 (when (eq *plan* :fetch)
 			 	(print "Performing fetching ...")
 				(setf ?output (fetching-object *objectname* *objecttype* *attribute* *fur-location1* *room1*)) ;; 14jn
 				(print "Fetching Plan Done ...")
 				(cram-talker ?output)
 				)
 
-			 (when (eq *plan* :deliver) ;; TODO add *number* for multiple objects
+			 (when (eq *plan* :deliver)
 			 	(print "Performing delivering ...") ;;; deliver object to location/person
 				(setf ?output (delivering-object *objectname* *fur-location1* *room1* (get-any-person-feature *personname* *persontype* *personaction*)))
 				(print "Delivering Plan Done ...")
@@ -127,7 +127,7 @@
 	    		
 	    		(when (eq *plan* :guide)
 			 	(print "Performing guiding ...")
-				(setf ?output (guide-people *personname* *persontype* *personaction* *room1* *fur-location1*)) ;; room or location
+				(setf ?output (guide-people *personname* *room1* *fur-location1*)) ;; room or location
 				(print "Guiding Plan Done ...")
 				(cram-talker ?output)
 				)
@@ -137,18 +137,21 @@
 				(print "Following Plan Done ...")
 				(cram-talker ?output)
 				)
-  			(when (eq *plan* :count)
+			
+			(when (eq *plan* :count)
 			 	(print "Performing following ...")
 				(setf ?output (count-object-people *objectname* *objecttype* *attribute* *personname* *persontype* *personaction* *room1* *fur-location1*)) ;; room or location
 				(print "Following Plan Done ...")
 				(cram-talker ?output)
 				)
+  			
   			(when (eq *plan* :describe)
 			 	(print "Performing following ...")
 				(setf ?output (describe-something *objectname* *objecttype* *attribute* *personname* *persontype* *personaction* *room1* *fur-location1*)) ;; room or location
 				(print "Following Plan Done ...")
 				(cram-talker ?output)
 				)
+  			
   			(when (eq *plan* :greet)
 			 	(print "Performing following ...")
 				(setf ?output (describe-something *personname* *persontype* *personaction* *room1* *fur-location1*)) ;; room or location

@@ -120,7 +120,7 @@
 	    		
 	    		(when (eq *plan* :transport)
 			 	(print "Performing transport ...")
-				(setf ?output (transporting-object *objectname* *room1* *fur-location1* *room2* *fur-location2* *personname*)) ;;; person or second location/room
+				(setf ?output (transporting-object *objectname* *objecttype* *attribute* *room1* *fur-location1* *room2* *fur-location2* *personname* *persontype* *personaction*)) ;;; person or second location/room
 				(print "Transport Plan Done ...")
 				(cram-talker ?output)
 				)
@@ -134,6 +134,24 @@
 			(when (eq *plan* :follow)
 			 	(print "Performing following ...")
 				(setf ?output (follow-people *personname* *persontype* *personaction* *room1* *fur-location1*)) ;; room or location
+				(print "Following Plan Done ...")
+				(cram-talker ?output)
+				)
+  			(when (eq *plan* :count)
+			 	(print "Performing following ...")
+				(setf ?output (count-object-people *objectname* *objecttype* *attribute* *personname* *persontype* *personaction* *room1* *fur-location1*)) ;; room or location
+				(print "Following Plan Done ...")
+				(cram-talker ?output)
+				)
+  			(when (eq *plan* :describe)
+			 	(print "Performing following ...")
+				(setf ?output (describe-something *objectname* *objecttype* *attribute* *personname* *persontype* *personaction* *room1* *fur-location1*)) ;; room or location
+				(print "Following Plan Done ...")
+				(cram-talker ?output)
+				)
+  			(when (eq *plan* :greet)
+			 	(print "Performing following ...")
+				(setf ?output (describe-something *personname* *persontype* *personaction* *room1* *fur-location1*)) ;; room or location
 				(print "Following Plan Done ...")
 				(cram-talker ?output)
 				)

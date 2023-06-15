@@ -14,7 +14,7 @@
 
 
 
-
+;;*****************************************************************************************************************************************
 ;;; NAVIGATION (?location ?location)
 ;;; TODO NAVIGATION TO THE PERSON
 (defun navigate-to-location(?location-nr-furt ?room) ;;; input keywords... give atleast one input and set other :nil (room or location-nr-furt) e.g (navigate-to-location :nil :kitchen) or (navigate-to-location :side-table :nil)
@@ -40,10 +40,11 @@
 	)
  
 
-
+;;***************************************************************************************************************************************************
 ;;; SEARCHING-object or person  (?object ?person ?location ?location)
-;; plan depends on  navigation-to-location  (14 jn)
-(defun searching-object (?object ?obj-type ?pr-name ?pr-type ?pr-action ?location-nr-furt ?room) ;;;give object/person and give one location at least 
+;; plan depends on  navigation-to-location 
+(defun searching-object (?object ?pr-name ?pr-type ?pr-action ?location-nr-furt ?room) ;;;give object/person and give one location at least -object :bottle :nil :couch :nil) or (searching-object :nil :alex :couch :nil) 
+ (setf *perceived-object* nil)
  	
   ;; (setf *personname*  :mehreen)
     ;; (setf *personaction* :sitting)
@@ -131,9 +132,11 @@
 						       )) 
  )
 
+
+;;; ************************************************************************************************************************************************
 ;;; FETCH the object (?object ?location)
 ;; plan depends on searching plan-->>  navigation-to-location 
-(defun fetching-object (?object ?object-type ?object-specification ?location-nr-furt ?room) ;;; 14 jn
+(defun fetching-object (?object ?object-type ?object-specification ?location-nr-furt ?room) ;;; 
 
 	(searching-object ?object :nil :nil :nil ?location-nr-furt ?room)
 	;;--->>>>> ADD pickup plan with failure handling and (searching plan save the object designator in global variable ) use  *perceived-object* to get object designator

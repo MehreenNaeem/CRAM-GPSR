@@ -1,8 +1,7 @@
 (in-package :su-demos)
 
 
-;;;; list of plans
-(setf list-of-plans '(:fetch :deliver :search :navigate :transport :guide :count :follow :describe :greet :nlu_fallback)) ;; 14 jn
+(setf list-of-plans '(:fetch :deliver :search :navigate :transport :guide :count :follow :describe :greet :nlu_fallback)) 
 
 
 (defun gpsr-subcribers()
@@ -76,14 +75,15 @@
           (sleep 1)
           
           ;;;; buffer knowledge.. 
+          ;;;; buffer knowledge.. 
           (when (not (eq *objectname* :it))  ;;;; for buffer knowledege of previous object
 			(setf *previous-objectname* *objectname*)
 		  	(setf *previous-objecttype* *objecttype*))
 			
-	(when (eq (check-person-pronoun *persontype*) T)
-			(setf *previous-personname* *personname*)
-			(setf *previous-personaction* *personaction*)
-			(setf *previous-persontype* *persontype*))
+		(when (eq (check-person-pronoun *persontype*) T)
+				(setf *previous-personname* *personname*)
+				(setf *previous-personaction* *personaction*)
+				(setf *previous-persontype* *persontype*))
 		
    ;;;;; Actions
  (su-real:with-hsr-process-modules
@@ -97,14 +97,14 @@
 				)
 	    
 			 (when (eq *plan* :search)
-			 	(print "Performing searching ...") ;; search for object/person on furniture/in a room (14 jn)
-				(setf ?output (searching-object *objectname* *objecttype* *personname* *persontype* *personaction* *fur-location1* *room1*)) 
+			 	(print "Performing searching ...") ;; search for object/person on furniture/in a room
+				(setf ?output (searching-object *objectname* *personname* *persontype* *personaction* *fur-location1* *room1*)) 
 				(print "searching Plan Done ...")
 				(cram-talker ?output)
 				)
 			 
 			 (when (eq *plan* :fetch)
-			 	(print "Performing fetching ...") 
+			 	(print "Performing fetching ...")
 				(setf ?output (fetching-object *objectname* *objecttype* *attribute* *fur-location1* *room1*)) ;; 14jn
 				(print "Fetching Plan Done ...")
 				(cram-talker ?output)
@@ -116,7 +116,7 @@
 				(print "Delivering Plan Done ...")
 				(cram-talker ?output)
 				)
-				(print *previous-object*)
+			
 	    		
 	    		(when (eq *plan* :transport)
 			 	(print "Performing transport ...")
@@ -137,6 +137,7 @@
 				(print "Following Plan Done ...")
 				(cram-talker ?output)
 				)
+			
   	 		(when (eq *plan* :nlu_fallback)
 			 	(print "No plan foud ...")
 				(cram-talker "fail")

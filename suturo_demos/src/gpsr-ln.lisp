@@ -2,7 +2,7 @@
 
 
 ;;;; list of plans
-(setf list-of-plans '(:fetch :deliver :search :navigate :transport :guide :follow :request :greet :nlu_fallback))
+(setf list-of-plans '(:fetch :deliver :search :navigate :transport :guide :count :follow :describe :greet :nlu_fallback)) ;; 14 jn
 
 
 (defun gpsr-subcribers()
@@ -97,15 +97,15 @@
 				)
 	    
 			 (when (eq *plan* :search)
-			 	(print "Performing searching ...") ;; search for object/person on furniture/in a room
-				(setf ?output (searching-object *objectname* *personname* *persontype* *personaction* *fur-location1* *room1*)) 
+			 	(print "Performing searching ...") ;; search for object/person on furniture/in a room (14 jn)
+				(setf ?output (searching-object *objectname* *objecttype* *personname* *persontype* *personaction* *fur-location1* *room1*)) 
 				(print "searching Plan Done ...")
 				(cram-talker ?output)
 				)
 			 
 			 (when (eq *plan* :fetch)
-			 	(print "Performing fetching ...")
-				(setf ?output (fetching-object (object-to-be *objectname*) *fur-location1* *room1*)) 
+			 	(print "Performing fetching ...") 
+				(setf ?output (fetching-object *objectname* *objecttype* *attribute* *fur-location1* *room1*)) ;; 14jn
 				(print "Fetching Plan Done ...")
 				(cram-talker ?output)
 				)

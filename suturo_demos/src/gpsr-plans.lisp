@@ -133,7 +133,7 @@
 
 ;;; FETCH the object (?object ?location)
 ;; plan depends on searching plan-->>  navigation-to-location 
-(defun fetching-object (?object ?location-nr-furt ?room)
+(defun fetching-object (?object ?object-type ?object-specification ?location-nr-furt ?room) ;;; 14 jn
 
 	(searching-object ?object :nil :nil :nil ?location-nr-furt ?room)
 	;;--->>>>> ADD pickup plan with failure handling and (searching plan save the object designator in global variable ) use  *perceived-object* to get object designator

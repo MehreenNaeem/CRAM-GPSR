@@ -182,6 +182,7 @@
 ;;;; numbers
 
 (defvar *nlp-numbers* '(:one :two :three :four :five :six :seven :eight :nine :ten))
+(defvar *cram-numbers* '(1 2 3 4 5 6 7 8 9 10))
 
  
 ;;;;navigating locations for Robot
@@ -342,5 +343,24 @@
 (defun get-person-action-name(?person-action-nlp-name)
 	(nth 1 (first (get-info-word ?person-action-nlp-name *persons-action*)))
 )
+
+(defun get-objects-list-by-number (?number ?object-category) ;;;;  (get-objects-list-by-number :seven :fruits) or  (get-objects-list-by-number :seven :nil)
+	(setf ?some-list nil)
+	(when (member ?number *nlp-numbers*)
+	     (let ((?position-in-list (first (all-positions-list ?number *nlp-numbers*))))
+		  (nth ?position-in-list *cram-numbers*)
+		  (when (not(eq ?object-category :nil))
+		      (dotimes (n (nth ?position-in-list *cram-numbers*)) 
+			      (push (nth n (get-info-word ?object-category *gpsr-objects*)) ?some-list))
+			  	(setf ?some-list (remove nil ?some-list))
+		      )
+		  (when (eq ?object-category :nil)
+			  (dotimes (n (nth ?position-in-list *cram-numbers*))
+				   (push (nth n *gpsr-objects*) ?some-list))
+			  )
+		  )
+	     )
+	(return-from get-objects-list-by-number ?some-list))
+
+
  
-	
